@@ -1,14 +1,31 @@
+/**
+ * Copyright (C) 2015 CODYCO Project
+ * Author: Serena Ivaldi <serena.ivaldi@inria.fr>, Charles Ballarini
+ * website: www.codyco.eu
+ *
+ * Copyright (C) 2012 MACSi Project
+ * Author: Charles Ballarini
+ * email:  charles.ballarini@gmail.com
+ * website: www.macsi.isir.upmc.fr
+ * Permission is granted to copy, distribute, and/or modify this program
+ * under the terms of the GNU General Public License, version 2 or any
+ * later version published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+ * Public License for more details
+*/
+
 #ifndef WOZ
 #define WOZ
-
-
 
 
 #include <yarp/os/all.h>
 #include <yarp/sig/all.h>
 #include <yarp/dev/all.h>
-#include <macsi/modHelp/modHelp.h>
-#include <macsi/objects/objects.h>
+//#include <macsi/modHelp/modHelp.h>
+//#include <macsi/objects/objects.h>
 
 #include "record.hh"
 #include "action.hh"
@@ -27,29 +44,25 @@
 using namespace yarp::os;
 using namespace yarp::sig;
 using namespace yarp::dev;
-using namespace macsi::modHelp;
-using namespace macsi::objects;
+//using namespace macsi::modHelp;
+//using namespace macsi::objects;
 using namespace std;
 
 
 
 
 //========================================================================================
-//									FONCTIONS
+//	FUNCTIONS
 //========================================================================================
 
 
-
 void configureRF (ResourceFinder finder, int argc, char* argv[]);
-
-
-
 void load_playlist_from_file (char* filename);
 
 
 
 //=========================================
-//			 		UTILS
+//	UTILS
 //=========================================
 
 

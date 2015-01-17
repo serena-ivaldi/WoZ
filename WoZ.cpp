@@ -1,4 +1,8 @@
 /**
+ * Copyright (C) 2015 CODYCO Project
+ * Author: Serena Ivaldi <serena.ivaldi@inria.fr>, Charles Ballarini
+ * website: www.codyco.eu
+ *
  * Copyright (C) 2012 MACSi Project
  * Author: Charles Ballarini
  * email:  charles.ballarini@gmail.com
@@ -42,8 +46,8 @@ Linux
 using namespace yarp::os;
 using namespace yarp::sig;
 using namespace yarp::dev;
-using namespace macsi::modHelp;
-using namespace macsi::objects;
+//using namespace macsi::modHelp;
+//using namespace macsi::objects;
 using namespace std;
 
 
@@ -146,6 +150,8 @@ void configureRF (ResourceFinder finder, int argc, char* argv[])
 {
     string tmp;
     readString(finder,"modulename",moduleName,"WoZ");
+    
+
     // Configuration file
     //---------------------------------------------------
     cout << "*********** File configuration" << endl;
