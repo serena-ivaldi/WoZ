@@ -1,9 +1,9 @@
 /**
  * Copyright (C) 2015 CODYCO Project
- * Author: Serena Ivaldi <serena.ivaldi@inria.fr>, Charles Ballarini
+ * Author: Charles Ballarini, Serena Ivaldi <serena.ivaldi@inria.fr>
  * website: www.codyco.eu
  *
- * Copyright (C) 2012 MACSi Project
+ * Copyright (C) 2014 EDHHI Project
  * Author: Charles Ballarini
  * email:  charles.ballarini@gmail.com
  * website: www.macsi.isir.upmc.fr
@@ -144,8 +144,52 @@ void destroy (void)
     gtk_main_quit ();
 }
 
+// new version of configure RF complying with new RF method and application file placement
+void configureRF (ResourceFinder finder, int argc, char* argv[])
+{
+    string tmpfile;
+    readString(finder,"modulename",moduleName,"WoZ");
+    readString (finder, "robotname", robotName_, "icubsim");
+    //robotName_ = tmpfile;
 
+    // Configuration file
+    //---------------------------------------------------
+    cout << "===> Reading configuration files" << endl;
+    
+    // Set speech configuration file
+    readString(finder,"filespeech",tmpfile,"woz_speech.conf");
+    tmpfile = finder.findFile (tmpfile);
+    
+    RFspeechConf_.setVerbose(true);
+    RFspeechConf_.setDefaultContext("taskRecorder");
+    RFspeechConf_.setDefaultConfigFile (tmpfile.c_str ());
+    RFspeechConf_.configure(1,&argv[0]);
+    cout << " speech - " << tmpfile << endl;
 
+    // Set action configurationfile  
+    readString (finder, "filearmrecord", tmpfile, string ("../data/armsrecords/"));
+    armRecordDir_ = finder.findFile (tmpfile);
+
+    // Set facial expression file
+    readString(finder, "fileface", tmpfile, "woz_face.conf");
+    tmpfile = finder.findFile (tmpfile);
+    RFface_.setDefaultContext("taskRecorder");
+    RFface_.setDefaultConfigFile (tmpfile.c_str ());
+    RFface_.configure(1,&argv[0]);
+    cout << " facial - " << tmpfile << endl;
+
+    // Set action
+    readString(finder, "fileaction", tmpfile, "basicfiles/action.conf");
+    tmpfile = finder.findFile (tmpfile);
+    RFaction_.setContext("../WoZ");
+    RFaction_.setDefaultConfigFile (tmpfile.c_str ());
+    RFaction_.configure("MACSI_ROOT",1,&argv[0]);
+    cout << " - " << tmpfile << endl;
+    cout << "*********** END File configuration" << endl;
+
+}
+
+/**
 void configureRF (ResourceFinder finder, int argc, char* argv[])
 {
     string tmp;
@@ -188,7 +232,7 @@ void configureRF (ResourceFinder finder, int argc, char* argv[])
     cout << "*********** END File configuration" << endl;
 
 }
-
+**/
 
 
 
